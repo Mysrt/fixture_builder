@@ -64,7 +64,7 @@ module FixtureBuilder
 
     def delete_tables
       ActiveRecord::Base.connection.disable_referential_integrity do
-        tables.each { |t| ActiveRecord::Base.connection.delete(delete_sql % ActiveRecord::Base.connection.quote_table_name(t)) }
+        tables.each { |t| "TRUNCATE TABLE #{ActiveRecord::Base.connection.quote_table_name(t))}"}
       end
     end
 
